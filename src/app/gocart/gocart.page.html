@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cart
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of addproduct; let i = index">
+      <ion-label>{{ product.productname }} :{{ product.price }}</ion-label>
+      <ion-label></ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="decreaseQuantity(product)">
+          <ion-icon name="remove"></ion-icon> 
+        </ion-button>
+        <ion-label>{{ product.quantity }}</ion-label>
+  
+        <ion-button (click)="increaseQuantity(product)">
+          <ion-icon name="add"></ion-icon> 
+        </ion-button>
+        <ion-button color="danger" (click)="deleteItem(i)">
+          <ion-icon name="trash"></ion-icon> 
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-button [routerLink]="['/']" expand="full"> Add More Product</ion-button>
+</ion-footer>

@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>addproduct</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <h1>Add product</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">      
+          <div class="container">
+            <div class="outer">
+              <ng-container *ngIf="imageUrl == '' ">
+                <img class="avatar"  src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ng-container>
+             <ng-container *ngIf="imageUrl != '' ">
+              <img class="avatar" [src]="imageUrl" alt="" />
+             </ng-container>
+                <div class="inner" >
+                   <ion-icon name="camera" (click)="takePicture()" class="camera-icon"></ion-icon>
+                </div>
+             </div>
+          </div>
+          <ion-item>
+            <ion-label position="floating">Productname</ion-label>
+            <ion-input type="text" formControlName="productname"></ion-input>
+          </ion-item>
+          <div *ngIf="productForm.controls['productname'].invalid && productForm.controls['productname'].touched"
+          class="alert alert-danger" color="danger">
+          productname required*
+        </div>
+          <ion-item>
+            <ion-label position="floating">Content</ion-label>
+            <ion-input type="text" formControlName="content"></ion-input>
+          </ion-item>
+          <div *ngIf="productForm.controls['content'].invalid && productForm.controls['content'].touched"
+          class="alert alert-danger" color="danger">
+          content required*
+        </div>
+          <ion-item>
+            <ion-label position="floating">Price</ion-label>
+            <ion-input type="text" formControlName="price"></ion-input>
+          </ion-item>
+          <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched"
+          class="alert alert-danger" color="danger">
+          price required*
+        </div>
+          
+          <ion-button expand="full" type="submit" [disabled]="!productForm.valid">Submit</ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>

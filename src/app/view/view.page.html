@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>view</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="/"></ion-back-button> 
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+   <h1>My Profile </h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+       <ion-item>
+        <ion-label> Name :{{login_data.firstName}} {{login_data.lastName}}</ion-label>
+       </ion-item>
+       <ion-item>
+        <ion-label> Email :{{login_data.email}}</ion-label>
+       </ion-item>
+       <ion-item>
+        <ion-label> Password :{{login_data.password}}</ion-label>
+       </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

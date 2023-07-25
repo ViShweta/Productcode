@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Product List
+    </ion-title>
+    <ion-col size="6">
+      <ion-icon name="menu" (click)="presentActionSheet()"></ion-icon>
+    </ion-col>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+  <ion-list>
+    <ion-reorder-group (ionItemReorder)="onRenderItems($event)" disabled="false">  
+    <ion-card *ngFor="let product of showproduct" (click)="goToedit(product)">
+      <ion-card-header>
+        <ion-card-title> Product Name : {{ product.productname }}</ion-card-title>
+        <ion-reorder></ion-reorder>  
+      </ion-card-header>
+      <ion-card-content>
+        <ion-avatar slot="start">
+          <img alt="Product Image" [src]="product.imageUrl" />
+        </ion-avatar>
+        <div class="product-details">
+          <p class="product-content"> {{ product.content }}</p>
+          <p class="product-price">Price : {{ product.price }}</p>
+          <ion-button (click)="addToCart(product)" *ngIf="!check(product.productname)">
+            Add to Cart
+          </ion-button>
+          <ion-button *ngIf="check(product.productname)" color="danger">
+            Added
+          </ion-button>
+          <ion-button color="danger" (click)="deleteProduct(product)">
+            Delete
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-reorder-group>  
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <ion-button [routerLink]="['/addproduct']" expand="full" color="secondary"> Add product</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button [routerLink]="['/gocart']" expand="full" color="warning"> Go Cart</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
